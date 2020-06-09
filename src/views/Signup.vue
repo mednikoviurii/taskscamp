@@ -1,24 +1,29 @@
 <template>
     <div class="app-content">
-        <b-field label="Email">
-            <b-input type="email" v-model="email"></b-input>
+        <b-field label="Email" v-bind:type="{'is-danger': $v.user.email.$invalid}">
+            <b-input type="email"
+             v-on:input="$v.user.email.$touch"
+             v-model="user.email"></b-input>
         </b-field>
 
         <div class="columns">
             <div class="column is-half">
                 <b-field label="First Name">
-                    <b-input type="text" v-model="firstName"></b-input>
+                    <b-input type="text" 
+                        v-model="user.firstName"></b-input>
                 </b-field>
             </div>
             <div class="column is-half">
                 <b-field label="Last Name">
-                    <b-input type="text" v-model="lastName"></b-input>
+                    <b-input type="text" 
+                        v-model="user.lastName"></b-input>
                 </b-field>
             </div>
         </div>
 
         <b-field label="Password">
-            <b-input type="password" v-model="password"></b-input>
+            <b-input type="password" 
+                v-model="user.password"></b-input>
         </b-field>
 
         <div>
@@ -40,11 +45,13 @@ import Parse from 'parse'
 export default {
     data() {
         return {
-            email: '',
-            firstName: '',
-            lastName: '',
-            password: '',
-            isLoading: false
+            isLoading: false,
+            user: {
+                email: '',
+                firstName: '',
+                lastName: '',
+                password: ''
+            }
         }
     },
     methods: {
@@ -52,10 +59,10 @@ export default {
             this.isLoading = true
             let user = new Parse.User()
 
-            user.set('username', this.email)
-            user.set('password', this.password)
-            user.set('first_name', this.firstName)
-            user.set('last_name', this.lastName)
+            user.set('username', this.user.email)
+            user.set('password', this.user.password)
+            user.set('first_name', this.user.firstName)
+            user.set('last_name', this.user.lastName)
 
             user.signUp().then(result => {
                 console.log('success')

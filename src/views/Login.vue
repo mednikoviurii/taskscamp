@@ -4,12 +4,14 @@
             <div class="box">
                 <p class="title is-4">Welcome back, please log in</p>
 
-                <b-field label="Email address">
-                    <b-input type="email" v-model="email"></b-input>
+                <b-field label="Email address"> 
+                    <b-input type="email" 
+                        v-model="loginRequest.email"></b-input>
                 </b-field>
 
                 <b-field label="Password">
-                    <b-input type="password" v-model="password"></b-input>
+                    <b-input type="password" 
+                        v-model="loginRequest.password"></b-input>
                 </b-field>
 
                 <div>
@@ -35,15 +37,17 @@ import Parse from 'parse'
 export default {
     data() {
         return {
-            email: '',
-            password: '',
-            isLoading: false
+            isLoading: false,
+            loginRequest: {
+                email: '',
+                password: ''
+            }
         }
     },
     methods: {
         login() {
             this.isLoading = true
-            Parse.User.logIn(this.email, this.password).then(user => {
+            Parse.User.logIn(this.loginRequest.email, this.loginRequest.password).then(user => {
                 console.log('success')
                 console.log(user.id)
                 this.$buefy.toast.open({
