@@ -6,11 +6,13 @@
 
                 <b-field label="Email address"> 
                     <b-input type="email" 
+                        v-on:input="$v.loginRequest.email.$touch"
                         v-model="loginRequest.email"></b-input>
                 </b-field>
 
                 <b-field label="Password">
                     <b-input type="password" 
+                        v-on:input="$v.loginRequest.password.$touch"
                         v-model="loginRequest.password"></b-input>
                 </b-field>
 
@@ -18,6 +20,7 @@
                     <b-button type="is-primary" 
                         v-bind:loading="isLoading" 
                         expanded 
+                        v-bind:disabled="$v.loginRequest.$invalid"
                         v-on:click="login">Log in</b-button>
                 </div>
 
@@ -33,6 +36,7 @@
 
 <script>
 import Parse from 'parse'
+import {required} from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -42,6 +46,12 @@ export default {
                 email: '',
                 password: ''
             }
+        }
+    },
+    validations: {
+        loginRequest: {
+            email:{required},
+            password: {required}
         }
     },
     methods: {

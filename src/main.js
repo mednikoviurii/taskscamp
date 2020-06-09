@@ -6,6 +6,8 @@ import Parse from 'parse'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+import Vuelidate from 'vuelidate'
+
 Vue.config.productionTip = false
 
 Parse.initialize(
@@ -15,6 +17,8 @@ Parse.initialize(
 Parse.serverURL = 'https://pg-app-uucg02h8mav1zq7cd70hiez6vsfcya.scalabl.cloud/1/';
 
 Vue.use(Buefy)
+Vue.use(Vuelidate)
+
 
 new Vue({
   router,
