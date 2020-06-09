@@ -10,4 +10,9 @@
     padding: 30px;
   }
 
+  .app-margin {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
 </style>

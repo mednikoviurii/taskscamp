@@ -25,6 +25,12 @@
             <b-button type="is-primary" v-on:click="signup"
                 v-bind:loading="isLoading">Create new account</b-button>
         </div>
+
+        <div class="app-margin">
+            <p>I already have an account
+                <router-link :to="{name: 'Login'}">Log in</router-link>
+            </p>
+        </div>
     </div>
 </template>
 
