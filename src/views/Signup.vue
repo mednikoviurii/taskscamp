@@ -1,8 +1,7 @@
 <template>
     <div class="app-content">
-        <b-field label="Email" v-bind:type="{'is-danger': $v.user.email.$invalid}">
+        <b-field label="Email">
             <b-input type="email"
-             v-on:input="$v.user.email.$touch"
              v-model="user.email"></b-input>
         </b-field>
 
